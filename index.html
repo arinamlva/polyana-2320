@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2320 Club — Красная Поляна</title>
+<meta name="description" content="2320 Club: уикенды в Красной Поляне под ключ. Шале, баня, фрирайд, суперкары и тусы до утра.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#07080a; --bg2:#0f1114; --card:#14171b; --line:#23272d;
+  --text:#f3f5f2; --muted:#9aa19a; --lime:#c6ff3d; --pink:#ff3d9a; --ice:#8fd8ff;
+  --r:22px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{background:var(--bg);color:var(--text);font-family:Manrope,system-ui,sans-serif;font-size:17px;line-height:1.55;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1240px;margin:0 auto;padding:0 24px}
+h1,h2,h3,.disp{font-family:Unbounded,sans-serif;line-height:1.02;letter-spacing:-.02em}
+.lime{color:var(--lime)} .pink{color:var(--pink)}
+.tag{display:inline-flex;gap:8px;align-items:center;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--lime);border:1px solid rgba(198,255,61,.35);padding:7px 14px;border-radius:99px}
+.btn{display:inline-flex;align-items:center;gap:10px;font-weight:700;padding:16px 28px;border-radius:99px;background:var(--lime);color:#0a0c06;transition:transform .2s,box-shadow .2s;border:0;cursor:pointer;font-size:16px;font-family:inherit}
+.btn:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(198,255,61,.35)}
+.btn.ghost{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,.3)}
+.btn.ghost:hover{box-shadow:none;border-color:#fff}
+
+/* nav */
+nav{position:fixed;inset:0 0 auto;z-index:50;transition:background .3s}
+nav.solid{background:rgba(7,8,10,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{font-family:Unbounded;font-weight:900;font-size:22px}
+.logo span{color:var(--lime)}
+.links{display:flex;gap:28px;font-weight:500;font-size:15px;color:#d7dbd6}
+.links a:hover{color:var(--lime)}
+nav .btn{padding:11px 20px;font-size:14px}
+
+/* hero */
+.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;padding:120px 0 72px;overflow:hidden}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.08);animation:zoom 18s ease-out forwards}
+@keyframes zoom{to{transform:scale(1)}}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,8,10,.35) 0%,rgba(7,8,10,.15) 40%,rgba(7,8,10,.92) 88%,var(--bg) 100%)}
+.hero .wrap{position:relative;z-index:2;width:100%}
+.hero h1{font-size:clamp(44px,8.4vw,128px);font-weight:900;margin:22px 0 20px;text-transform:uppercase}
+.hero h1 em{font-style:normal;color:var(--lime)}
+.hero p{max-width:560px;font-size:clamp(17px,1.6vw,20px);color:#dfe3dc;margin-bottom:32px}
+.hero .ctas{display:flex;gap:14px;flex-wrap:wrap}
+.hero .stats{display:flex;gap:44px;margin-top:56px;flex-wrap:wrap}
+.hero .stats b{display:block;font-family:Unbounded;font-size:32px}
+.hero .stats span{color:var(--muted);font-size:14px}
+
+/* marquee */
+.marquee{background:var(--lime);color:#0a0c06;overflow:hidden;transform:rotate(-1.5deg);margin:-8px -20px 0;padding:14px 0}
+.marquee div{display:flex;gap:40px;white-space:nowrap;width:max-content;animation:run 28s linear infinite;font-family:Unbounded;font-weight:700;font-size:20px;text-transform:uppercase}
+@keyframes run{to{transform:translateX(-50%)}}
+
+section{padding:120px 0}
+.head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:56px;flex-wrap:wrap}
+.head h2{font-size:clamp(34px,5vw,68px);max-width:780px;margin-top:18px}
+.head p{max-width:400px;color:var(--muted)}
+
+/* vibe grid */
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
+.tile{position:relative;border-radius:var(--r);overflow:hidden;min-height:420px;background:var(--card)}
+.tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s}
+.tile:hover img{transform:scale(1.06)}
+.tile::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,.85))}
+.tile .t{position:absolute;left:26px;right:26px;bottom:24px;z-index:2}
+.tile h3{font-size:26px;margin-bottom:8px}
+.tile p{color:#d3d8d0;font-size:15px}
+.tile .n{position:absolute;top:20px;left:22px;z-index:2;font-family:Unbounded;font-size:13px;background:rgba(0,0,0,.5);backdrop-filter:blur(8px);padding:6px 12px;border-radius:99px}
+.s7{grid-column:span 7}.s5{grid-column:span 5}.s4{grid-column:span 4}.s8{grid-column:span 8}.s6{grid-column:span 6}
+
+/* garage */
+.garage{background:var(--bg2);position:relative;overflow:hidden}
+.garage .big{position:relative;border-radius:var(--r);overflow:hidden;aspect-ratio:16/8;margin-bottom:22px}
+.garage .big img{width:100%;height:100%;object-fit:cover}
+.garage .big .lbl{position:absolute;left:28px;bottom:26px;font-family:Unbounded;font-size:clamp(22px,3vw,40px);font-weight:900;text-transform:uppercase;text-shadow:0 4px 30px rgba(0,0,0,.6)}
+.cars{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.car{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;transition:border-color .25s,transform .25s}
+.car:hover{border-color:var(--lime);transform:translateY(-4px)}
+.car h3{font-size:19px;margin-bottom:14px}
+.car .specs{display:flex;justify-content:space-between;color:var(--muted);font-size:13px;border-top:1px solid var(--line);padding-top:14px;margin-top:14px}
+.car .specs b{display:block;color:var(--text);font-family:Unbounded;font-size:16px}
+.car .vibe{font-size:14px;color:#c9cec6}
+
+/* party */
+.party{position:relative;padding:0;min-height:92vh;display:flex;align-items:center;overflow:hidden}
+.party>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.party::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(7,8,10,.95) 0%,rgba(7,8,10,.6) 55%,rgba(7,8,10,.2));z-index:1}
+.party .wrap{position:relative;z-index:2;padding-top:120px;padding-bottom:120px}
+.party h2{font-size:clamp(46px,8vw,120px);font-weight:900;text-transform:uppercase}
+.party h2 span{-webkit-text-stroke:2px var(--pink);color:transparent}
+.party p.lead{max-width:520px;margin:22px 0 34px;color:#dde1da;font-size:19px}
+.lineup{display:grid;gap:10px;max-width:540px;margin-bottom:36px}
+.lineup div{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border:1px solid rgba(255,255,255,.14);border-radius:14px;background:rgba(0,0,0,.35);backdrop-filter:blur(8px)}
+.lineup b{font-family:Unbounded;font-size:16px}
+.lineup span{color:var(--pink);font-weight:700;font-size:14px}
+
+/* weekend timeline */
+.days{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.day{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:32px}
+.day .d{font-family:Unbounded;font-size:13px;color:var(--lime);letter-spacing:.1em;text-transform:uppercase}
+.day h3{font-size:28px;margin:10px 0 22px}
+.day ul{list-style:none;display:grid;gap:14px}
+.day li{display:flex;gap:14px;font-size:15px;color:#d4d8d1}
+.day li time{font-family:Unbounded;font-size:13px;color:var(--muted);min-width:46px;padding-top:2px}
+
+/* pricing */
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:stretch}
+.plan{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:34px;display:flex;flex-direction:column}
+.plan.hot{background:linear-gradient(160deg,#1b2410,#0f1210 60%);border-color:var(--lime);position:relative}
+.plan.hot::before{content:"ИМБА ВЫБОР";position:absolute;top:-13px;left:34px;background:var(--lime);color:#0a0c06;font-weight:800;font-size:12px;letter-spacing:.12em;padding:5px 12px;border-radius:99px}
+.plan h3{font-size:24px}
+.plan .who{color:var(--muted);font-size:14px;margin:6px 0 24px}
+.plan .price{font-family:Unbounded;font-size:44px;font-weight:900}
+.plan .price small{font-size:15px;color:var(--muted);font-weight:500;font-family:Manrope}
+.plan ul{list-style:none;margin:26px 0 30px;display:grid;gap:12px;flex:1}
+.plan li{padding-left:28px;position:relative;font-size:15px;color:#d6dad3}
+.plan li::before{content:"";position:absolute;left:0;top:7px;width:14px;height:8px;border-left:2px solid var(--lime);border-bottom:2px solid var(--lime);transform:rotate(-45deg)}
+.plan .btn{justify-content:center}
+
+/* reviews */
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.rev{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:30px}
+.rev p{font-size:17px;margin-bottom:22px}
+.rev .who{display:flex;align-items:center;gap:12px;font-size:14px;color:var(--muted)}
+.rev .av{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-family:Unbounded;font-weight:700;color:#0a0c06}
+
+/* faq */
+.faq{max-width:860px}
+details{border-bottom:1px solid var(--line);padding:24px 0}
+summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:20px;font-family:Unbounded;font-size:19px;font-weight:500}
+summary::after{content:"+";color:var(--lime);font-size:26px;line-height:1;transition:transform .25s}
+details[open] summary::after{transform:rotate(45deg)}
+details p{color:var(--muted);margin-top:14px;max-width:720px}
+
+/* cta */
+.cta{position:relative;overflow:hidden;border-radius:32px;padding:80px 60px;background:radial-gradient(circle at 85% 10%,rgba(255,61,154,.35),transparent 45%),radial-gradient(circle at 10% 90%,rgba(198,255,61,.25),transparent 50%),var(--card);border:1px solid var(--line);display:grid;grid-template-columns:1.1fr 1fr;gap:50px;align-items:center}
+.cta h2{font-size:clamp(34px,4.6vw,62px)}
+.cta p{color:#cfd4cc;margin-top:18px}
+form{display:grid;gap:12px}
+input,select{width:100%;background:rgba(0,0,0,.4);border:1px solid var(--line);color:var(--text);padding:16px 18px;border-radius:14px;font:inherit;font-size:16px}
+input:focus,select:focus{outline:none;border-color:var(--lime)}
+.ok{display:none;padding:18px;border-radius:14px;background:rgba(198,255,61,.12);border:1px solid var(--lime);color:var(--lime);font-weight:700}
+
+footer{padding:70px 0 50px;color:var(--muted);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:40px}
+footer .note{max-width:520px}
+
+.rv{opacity:0;transform:translateY(40px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+
+@media (max-width:980px){
+  .links{display:none}
+  .s7,.s5,.s4,.s8,.s6{grid-column:span 12}
+  .tile{min-height:360px}
+  .cars{grid-template-columns:repeat(2,1fr)}
+  .days,.plans,.reviews{grid-template-columns:1fr}
+  .cta{grid-template-columns:1fr;padding:48px 28px}
+  .garage .big{aspect-ratio:4/3}
+}
+@media (max-width:560px){
+  .wrap{padding:0 16px}
+  section{padding:84px 0}
+  .cars{grid-template-columns:1fr}
+  .hero .stats{gap:28px}
+  nav .btn{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .hero img,.marquee div{animation:none}
+  .rv{opacity:1;transform:none;transition:none}
+}
+</style>
+</head>
+<body>
+
+<nav id="nav"><div class="wrap">
+  <a href="#" class="logo">2320<span>.</span>club</a>
+  <div class="links">
+    <a href="#vibe">Вайб</a><a href="#garage">Тачки</a><a href="#party">Тусы</a><a href="#plans">Пакеты</a><a href="#faq">FAQ</a>
+  </div>
+  <a href="#book" class="btn">Залететь</a>
+</div></nav>
+
+<header class="hero">
+  <img src="assets/hero.jpg" alt="Шале ночью в горах Красной Поляны, перед ним спортивное купе">
+  <div class="wrap">
+    <span class="tag">● Красная Поляна · сезон 26/27</span>
+    <h1>Живи<br>на <em>высоте</em></h1>
+    <p>Уикенд в горах под ключ. Шале, баня, фрирайд, суперкар на серпантине и тусы до утра. Ты просто прилетаешь, а мы делаем так, что твои сторис смотрят все. Рил.</p>
+    <div class="ctas">
+      <a href="#plans" class="btn">Выбрать пакет →</a>
+      <a href="#vibe" class="btn ghost">Чекнуть вайб</a>
+    </div>
+    <div class="stats">
+      <div><b>2320 м</b><span>пик, где мы тусим</span></div>
+      <div><b>3 дня</b><span>чистый мэйн-каракте мод</span></div>
+      <div><b>0 кринжа</b><span>гарантия, без шуток</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="marquee" aria-hidden="true"><div>
+  <span>фрирайд ✦ баня с чаном ✦ суперкары ✦ шале ✦ хели-ски ✦ афтепати ✦ апрески ✦ 2320 night ✦</span>
+  <span>фрирайд ✦ баня с чаном ✦ суперкары ✦ шале ✦ хели-ски ✦ афтепати ✦ апрески ✦ 2320 night ✦</span>
+</div></div>
+
+<section id="vibe">
+  <div class="wrap">
+    <div class="head rv">
+      <div><span class="tag">Что внутри</span><h2>Всё, ради чего ты <span class="lime">рил</span> работал весь год</h2></div>
+      <p>Никакого «ну мы тут сами как-нибудь». Каждая минута уикенда собрана так, чтобы было по фану и без суеты.</p>
+    </div>
+    <div class="grid">
+      <div class="tile s7 rv"><img src="assets/ski.jpg" alt="Фрирайд по пухляку" loading="lazy"><span class="n">01</span><div class="t"><h3>Фрирайд и пухляк</h3><p>Личный инструктор, лучшие склоны Розы и Газпрома, ски-пасс без очередей. Даже если ты на лыжах второй раз, флексить будешь как профи.</p></div></div>
+      <div class="tile s5 rv"><img src="assets/banya.jpg" alt="Баня и горячий чан в снегу" loading="lazy"><span class="n">02</span><div class="t"><h3>Баня + чан в снегу</h3><p>Пармастер, веники, горячий чан под звёздами. Перезагрузка лучше любого ретрита.</p></div></div>
+      <div class="tile s4 rv"><img src="assets/heli.jpg" alt="Вертолёт на хребте на рассвете" loading="lazy"><span class="n">03</span><div class="t"><h3>Хели-ски</h3><p>Вертолёт закидывает на нетронутые хребты. Вид, от которого у всех упадёт челюсть.</p></div></div>
+      <div class="tile s4 rv"><img src="assets/gym.jpg" alt="Зал с видом на горы" loading="lazy"><span class="n">04</span><div class="t"><h3>Спорт с видом</h3><p>Утренняя трень с тренером в зале с панорамой. Форма не уходит в отпуск.</p></div></div>
+      <div class="tile s4 rv"><img src="assets/chalet.jpg" alt="Компания у камина в шале" loading="lazy"><span class="n">05</span><div class="t"><h3>Шале на всю банду</h3><p>Камин, панорамные окна, повар и консьерж 24/7. Твой хата-флекс.</p></div></div>
+      <div class="tile s6 rv"><img src="assets/apres.jpg" alt="Компания на апрески-террасе" loading="lazy"><span class="n">06</span><div class="t"><h3>Апрески и нетворк</h3><p>Террасы, солнце, красивые люди. Тут знакомятся с крашами и с будущими партнёрами по бизнесу. Иногда это одни и те же люди.</p></div></div>
+      <div class="tile s6 rv"><img src="assets/party.jpg" alt="Вечеринка в горном клубе" loading="lazy"><span class="n">07</span><div class="t"><h3>Тусы до рассвета</h3><p>Закрытые вечеринки 2320 NIGHT, лучшие диджеи и VIP-столы. Фейсконтроль на кринж включён.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="garage" class="garage">
+  <div class="wrap">
+    <div class="head rv">
+      <div><span class="tag">Гараж</span><h2>Тачки, от которых <span class="lime">залипает</span> весь серпантин</h2></div>
+      <p>Встречаем в аэропорту Сочи на суперкаре. Дальше 40 км горной дороги до Поляны, и это лучший трип в твоей жизни.</p>
+    </div>
+    <div class="big rv"><img src="assets/car.jpg" alt="Суперкар на горном серпантине" loading="lazy"><div class="lbl">Сочи → Поляна<br><span class="lime">за 35 минут вайба</span></div></div>
+    <div class="cars">
+      <div class="car rv"><h3>Porsche 911 Turbo S</h3><p class="vibe">Классика для тех, кто шарит. Тихо, быстро, базово.</p><div class="specs"><div><b>650</b>л.с.</div><div><b>2,7 с</b>до 100</div></div></div>
+      <div class="car rv"><h3>Lamborghini Urus</h3><p class="vibe">Суперкар, в который влезут лыжи и вся банда.</p><div class="specs"><div><b>666</b>л.с.</div><div><b>3,3 с</b>до 100</div></div></div>
+      <div class="car rv"><h3>Mercedes-AMG G 63</h3><p class="vibe">Гелик на шипах. Снегопад? Не, не слышали.</p><div class="specs"><div><b>585</b>л.с.</div><div><b>4,5 с</b>до 100</div></div></div>
+      <div class="car rv"><h3>Ferrari Purosangue</h3><p class="vibe">Для мэйн-каракте выхода у клуба. Без комментариев.</p><div class="specs"><div><b>725</b>л.с.</div><div><b>3,3 с</b>до 100</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="party" class="party">
+  <img src="assets/party.jpg" alt="" loading="lazy">
+  <div class="wrap rv">
+    <span class="tag" style="color:var(--pink);border-color:rgba(255,61,154,.4)">● Закрытая вечеринка</span>
+    <h2>2320<br><span>Night</span></h2>
+    <p class="lead">Наш собственный фест на высоте. Сноуборд-баттлы днём, хедлайнеры ночью, афтепати в шале до первого подъёмника. Попасть можно только с браслетом клуба.</p>
+    <div class="lineup">
+      <div><b>Пт · Opening Rave</b><span>23:00 → 05:00</span></div>
+      <div><b>Сб · Snow Battle + Headliner</b><span>14:00 → 06:00</span></div>
+      <div><b>Вс · Sunrise Afterparty</b><span>06:00 → ∞</span></div>
+    </div>
+    <a href="#book" class="btn" style="background:var(--pink);color:#fff">Хочу браслет →</a>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="head rv">
+      <div><span class="tag">Как проходит уикенд</span><h2>Три дня, после которых <span class="lime">понедельник не страшен</span></h2></div>
+    </div>
+    <div class="days">
+      <div class="day rv"><div class="d">Пятница</div><h3>Заезд</h3><ul>
+        <li><time>16:00</time>Встреча в аэропорту, ключи от суперкара</li>
+        <li><time>17:30</time>Серпантин, закат, первые сторис</li>
+        <li><time>19:00</time>Заселение в шале, ужин от шефа</li>
+        <li><time>23:00</time>2320 NIGHT: Opening Rave</li>
+      </ul></div>
+      <div class="day rv"><div class="d">Суббота</div><h3>Фул-мод</h3><ul>
+        <li><time>09:00</time>Трень с видом и детокс-завтрак</li>
+        <li><time>10:30</time>Фрирайд или хели-ски с гидом</li>
+        <li><time>15:00</time>Апрески на террасе 2320</li>
+        <li><time>19:00</time>Баня, пармастер, чан</li>
+        <li><time>23:30</time>Хедлайнер и VIP-стол</li>
+      </ul></div>
+      <div class="day rv"><div class="d">Воскресенье</div><h3>Отходняк, но стильный</h3><ul>
+        <li><time>06:00</time>Sunrise Afterparty на хребте</li>
+        <li><time>13:00</time>Поздний бранч и массаж</li>
+        <li><time>16:00</time>Фотосет от нашего фотографа</li>
+        <li><time>18:00</time>Трансфер в аэропорт. Плачешь, но счастлив</li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+
+<section id="plans" style="background:var(--bg2)">
+  <div class="wrap">
+    <div class="head rv">
+      <div><span class="tag">Пакеты</span><h2>Выбирай свой <span class="lime">уровень флекса</span></h2></div>
+      <p>Цена за человека за уикенд (3 дня, 2 ночи). Перелёт не включён, всё остальное включено.</p>
+    </div>
+    <div class="plans">
+      <div class="plan rv"><h3>Чилл</h3><p class="who">Для первого залёта</p><div class="price">89к <small>₽ / чел</small></div><ul>
+        <li>Шале на 4–6 человек</li><li>Ски-пасс на 2 дня + инструктор</li><li>Баня с чаном, 1 сеанс</li><li>Вход на 2320 NIGHT (танцпол)</li><li>Трансфер на премиум-минивэне</li>
+      </ul><a href="#book" class="btn ghost">Беру чилл</a></div>
+      <div class="plan hot rv"><h3>Флекс</h3><p class="who">Самый топ по соотношению</p><div class="price">189к <small>₽ / чел</small></div><ul>
+        <li>Премиум-шале с личным шефом</li><li>Фрирайд с гидом, без очередей</li><li>Баня с пармастером каждый вечер</li><li>Porsche 911 или Urus на 1 день</li><li>VIP-стол на 2320 NIGHT</li><li>Фотограф на апрески</li>
+      </ul><a href="#book" class="btn">Беру флекс</a></div>
+      <div class="plan rv"><h3>Главный герой</h3><p class="who">Когда скромность не про тебя</p><div class="price">490к <small>₽ / чел</small></div><ul>
+        <li>Пентхаус-шале с панорамой</li><li>Хели-ски на нетронутые хребты</li><li>Суперкар на все 3 дня, любой из гаража</li><li>Бэкстейдж с хедлайнером</li><li>Личный консьерж 24/7</li><li>Фото + видеограф, рилс за ночь</li>
+      </ul><a href="#book" class="btn ghost">Я главный герой</a></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="head rv"><div><span class="tag">Отзывы</span><h2>Что говорят <span class="lime">наши</span></h2></div></div>
+    <div class="reviews">
+      <div class="rev rv"><p>«Ехал “просто покататься”. В итоге хели-ски, гелик и три новых контакта для стартапа. Это имба, без преувеличений.»</p><div class="who"><div class="av" style="background:var(--lime)">Д</div>Дима, 27 · продакт</div></div>
+      <div class="rev rv"><p>«Баня с чаном под снегом после фрирайда, это вообще другой уровень. Вернулся в Москву как новый.»</p><div class="who"><div class="av" style="background:var(--ice)">А</div>Артём, 24 · трейдер</div></div>
+      <div class="rev rv"><p>«Брали “Флекс” на шестерых на днюху. Сторис посмотрел весь универ. Уже забронили на март.»</p><div class="who"><div class="av" style="background:var(--pink)">М</div>Марк, 29 · основатель агентства</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="faq" style="padding-top:0">
+  <div class="wrap">
+    <div class="head rv"><div><span class="tag">FAQ</span><h2>Душные вопросы</h2></div></div>
+    <div class="faq">
+      <details><summary>Я ни разу не стоял на лыжах. Мне норм?</summary><p>Абсолютно. Инструктор подбирает трассы под твой уровень. К обеду субботы уже будешь ехать красиво, а в сторис никто не узнает, что это твой первый раз.</p></details>
+      <details><summary>Можно приехать одному?</summary><p>Да, и это даже по фану. Подселим в шале к таким же ребятам или дадим отдельный номер. Тусы и апрески сделают остальное.</p></details>
+      <details><summary>Какие права нужны для суперкара?</summary><p>Категория B, стаж от 3 лет, возраст от 22. Перед выездом короткий инструктаж и депозит. За руль только трезвым, это без вариантов.</p></details>
+      <details><summary>А если погода нелётная для хели-ски?</summary><p>Переносим на другой день или возвращаем разницу. Взамен предлагаем фрирайд с гидом или ски-тур.</p></details>
+      <details><summary>Можно собрать уикенд под себя?</summary><p>Конечно. Днюха, мальчишник, корпоратив для команды стартапа. Пиши в заявке, консьерж соберёт кастом.</p></details>
+    </div>
+  </div>
+</section>
+
+<section id="book" style="padding-top:0">
+  <div class="wrap">
+    <div class="cta rv">
+      <div>
+        <span class="tag">Сезон открыт</span>
+        <h2 style="margin-top:18px">Хватит смотреть чужие сторис. <span class="lime">Снимай свои.</span></h2>
+        <p>Оставь контакт, консьерж напишет в течение 15 минут и соберёт уикенд под тебя. Места на январь улетают быстро, не тупи.</p>
+      </div>
+      <form id="f">
+        <input required name="name" placeholder="Как тебя зовут">
+        <input required name="tg" placeholder="Телеграм или телефон">
+        <select name="plan"><option>Пакет «Флекс»</option><option>Пакет «Чилл»</option><option>Пакет «Главный герой»</option><option>Хочу кастом</option></select>
+        <select name="when"><option>Декабрь</option><option>Новогодние</option><option>Январь</option><option>Февраль</option><option>Март</option></select>
+        <button class="btn" type="submit" style="justify-content:center">Забронить уикенд →</button>
+        <div class="ok" id="ok">Заявка улетела 🚀 Консьерж уже пишет тебе.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap">
+  <div><div class="logo" style="color:var(--text)">2320<span>.</span>club</div><p style="margin-top:10px">Красная Поляна, Сочи · сезон 26/27</p></div>
+  <p class="note">Концепт-сайт. Бренд 2320 Club, цены, отзывы и вечеринка 2320 NIGHT вымышлены. Изображения сгенерированы ИИ. Названия автомобилей принадлежат их владельцам. 18+</p>
+</div></footer>
+
+<script>
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>nav.classList.toggle('solid',scrollY>40),{passive:true});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+document.getElementById('f').addEventListener('submit',e=>{e.preventDefault();document.getElementById('ok').style.display='block';e.target.querySelector('button').style.display='none'});
+</script>
+</body>
+</html>
